@@ -1,10 +1,11 @@
 import {useState} from "react";
+import './App.scss';
 
 function App() {
     const [value, setValue] = useState('');
     const [todos, setTodos] = useState([]);
 
-    function handleValue(event){
+    function handleValue(event) {
         setValue(event.target.value);
     }
 
@@ -15,18 +16,28 @@ function App() {
         }
     }
 
+    function handleChangeStatus(todo) {
+        
+    }
+
     return (
         <div>
-        <h1>todos</h1>
+            <h1>todos</h1>
             <input
                 type='text'
                 value={value}
                 onChange={handleValue}
                 onKeyUp={handleAddTodo}
             />
-            <ul>
+            <ul className='todos'>
                 {todos.map((todo, id) => (
-                    <li key={id}>{todo}</li>
+                    <li className='todo' key={id}>
+                        <span 
+                            className="status"
+                            onClick={() => handleChangeStatus(todo)}
+                        ></span>
+                        <span>{todo}</span>
+                    </li>
                 ))}
             </ul>
         </div>
